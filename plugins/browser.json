@@ -1,0 +1,73 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "xyz.nathanwatts.score_it"
+        }
+    }
+}
