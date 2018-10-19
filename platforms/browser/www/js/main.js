@@ -1,24 +1,25 @@
 function cl(val) {
     console.log(val);
 }
-
+var xxx = "Waiting for input";
+var zzz = "Waiting for input";
 var suit;
-var mult = 0;
+var mult;
 var bid;
 var vul;
 var made;
-var ot; // over/under tricks made
+var overUnder; // over/under tricks made
 var bpp; // over/under base penalty points
 var tpp; // total penalty points
 
 var ppt; // points per trick
 var ntb; // NT bonus
-var ttp; // total trick points
+var totalTrickPoints; // total trick points
 
 var ctt; // contract type
-var gtb; // game type bonus
-var sb; // slam bonus
-var dblb; // doubling bonus
+var contractBonus; // game type bonus
+var slamBonus; // slam bonus
+var dblBonus; // doubling bonus
 
 /* ============================================================================
 |
@@ -29,7 +30,7 @@ var dblb; // doubling bonus
 
 function getBid() {
     if (!$('input[name="bid"]').is(':checked')) {
-        return undefined;
+        return 0;
     } else {
         return parseInt($('input[name="bid"]:checked').val());
     }
@@ -40,23 +41,23 @@ function getSuit() {
 }
 
 function getMultiplier() {
-    return $('input[name="mult"]:checked').val();
+    return parseInt($('input[name="mult"]:checked').val());
 }
 
 function getVul() {
 
-    return $('input[name="vul"]:checked').val();
+    let x = $('input[name="vul"]:checked').val();
 
-    // if (x === 'v') {
-    //     return true;
-    // } else {
-    //     return false;
-    // }
+    if (x === "V") { // return boolean
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function getMade() {
     if (!$('input[name="made"]').is(':checked')) {
-        return undefined;
+        return undefined; // used for easy identification
     } else {
         return parseInt($('input[name="made"]:checked').val());
     }
@@ -78,7 +79,7 @@ function validateContract(bid, mult, suit, vul) {
 ============================================================================ */
 
 
-/* http://www.bridgeguys.com/Conventions/ScoreDuplicateBridge.html */
+/* https://www.bridgeguys.com/Conventions/ScoreDuplicateBridge.html */
 
 
 function setContractDetails() {
@@ -92,20 +93,20 @@ function setContractDetails() {
     /* set values based on inputs */
     ppt = setPPT(suit);
     ntb = setNTB(suit);
-    ttp = totalTrickPoints(ppt, bid, ntb);
+    totalTrickPoints = setTotalTrickPoints(ppt, bid, ntb);
 
     /* Functions for scoring */
-    ctt = setContractType();
-    gtb = setGameTypeBonus(ctt);
-    sb = setSlamBonus(bid);
-    dblb = setDoublingBonus(mult);
+    ctt = setContractType(totalTrickPoints);
+    contractBonus = setContractBonus(ctt);
+    slamBonus = setSlamBonus(bid);
+    dblBonus = setContractDblBonus(mult);
     setSubTotal(); // original contract bid with no over/under tricks
 
     /* Game over and Penalties */
-    bpp = setBasePenalty(vul);
-    ot = setExtraTricks(bid, made); // total ammount of over tricks
-    tpp = setPenalty(ot, bpp);
-    grandTotal = gameOver(ot, tpp);
+    overUnder = setOverUnderTricks(made, bid); // total ammount of over tricks
+    bpp = setOverUnderBase(overUnder, vul, mult, made, suit, ppt);
+    tpp = setPenalty(overUnder, bpp);
+    grandTotal = gameOver(overUnder, tpp);
 
 
 
@@ -137,44 +138,60 @@ function debug() {
         "Contract Type: " + ctt + '\n'
     );
 
+    /* scoring breakdown */
     cl(
-        "Total Trick Score: " + ttp + '\n' +
-        "Bonus - Doubling: " + dblb + '\n' +
-        "Bonus - Game Type: " + gtb + '\n' +
-        "Bonus - Slam: " + sb + '\n' +
+        "Total Trick Points: " + totalTrickPoints + '\n' +
+        "Doubling Bonus: " + dblBonus + '\n' +
+        "Contract Bonus: " + contractBonus + '\n' +
+        "Slam Bonus: " + slamBonus + '\n' +
         "Sub Total Score: " + subTotal + '\n' +
         "Grand Total: " + grandTotal + '\n'
     );
 
     cl(
         "Base Penality (bpp) : " + bpp + '\n' +
-        "Over/Under Tricks (ot) : " + ot + '\n' +
+        "Over/Under Tricks (ot) : " + overUnder + '\n' +
+        // "TESTING XXX : " + xxx + '\n' +
+        // "TESTING ZZZ: " + zzz + '\n' +
         "Total Penality Points (tpp): " + tpp + '\n'
     )
 
 }
-
 
 /* ============================================================================
 |
 | Contract and Scoring functions.
 |
 ============================================================================ */
+/* 
+|
+| total trick points (multipliers are taken care on when setting PPT and NTB)
+| totalTrickPoints = (bid * ppt) + ntb (NOTE: 'V' and 'NV' does not alter PPT)
+| 
+| 
+*/
 
 function setPPT(suit) {
 
     /* 
-    | Set points per trick including multiplier (totalPPT)
+    | Set base points per trick *** including multiplier *** 
+    |
     */
 
+    // if the multiplier is not set temporarly set to 1, so 'points per trick' can be displayed if selected first 
+    let m = mult;
+
+    if (m === undefined) {
+        m = 1;
+    }
+
     if (suit === 'diamonds' || suit === 'clubs') {
-        return 20 * mult;
+        return 20 * m;
     } else if (suit === 'nt' || suit === 'hearts' || suit === 'spades') {
-        return 30 * mult;
+        return 30 * m;
     } else {
         return 0;
     }
-
 }
 
 function setNTB(suit) {
@@ -183,51 +200,68 @@ function setNTB(suit) {
     | Set 'nt' bonus for the first trick (10 points * multiplier)
     */
 
+    // if the multiplier is not set temporarly set to 1, so 'points per trick' can be displayed if selected first 
+    let m = mult;
+
+    if (m === undefined) {
+        m = 1;
+    }
+
     if (suit === 'nt') {
-        return 10 * mult;
+        return 10 * m;
     } else {
         return 0;
     }
 }
 
-function totalTrickPoints(ppt, bid, ntb) {
+function setTotalTrickPoints(ppt, bid, ntb) {
+
     /* 
     | Total score for tricks including multipliers and NTB (if bid), no bonuses!
     */
 
-    return ppt * (bid - 6) + ntb; // the -6 is due to no points awarded for the first 6 tricks
-}
-
-function setContractType() {
-
-    /* 
-    | Set contract type (bonus)
-    |
-    | If the contract score exceeds 100 (including multipliers) then the contract
-    | type is 'game' awarding 300 bonus points (or 500 points if vulnerable), if the
-    | contract is less than less than 100 points 'part score' is achieved awarding
-    | 50 bonus points.
-    |
-    | Contract bonuses are subject to multipliers
-    */
-
-    if (ttp <= 99) {
-        return "Part Score";
+    if (bid === 0 || ppt === 0) { // prevent contract type displaying early
+        return 0;
     } else {
-        return "Game";
+        return ppt * (bid - 6) + ntb; // the -6 is due to no points awarded for the first 6 tricks
     }
 
 }
 
-function setDoublingBonus(mult) {
+function setContractType(totalTrickPoints) {
 
     /* 
-    | Doubling bonus (dblb) for doubling and re-doubling. This is a straight up bonus of 50 and 100. 
+    | Set contract type (bonus)
+    |
+    | If the trick score exceeds 100 (including multipliers) then the contract
+    | type is 'game' awarding 300 bonus points (or 500 points if vulnerable), if the
+    | contract is less than less than 100 points 'part score' is achieved awarding
+    | 50 bonus points.
+    |
+    */
+    let t = totalTrickPoints;
+
+    if (t === undefined) {
+        return undefined;
+    }
+    if (t <= 99) {
+        return "PART-SCORE";
+    } else {
+        return "GAME";
+    }
+
+}
+
+function setContractDblBonus(mult) {
+
+    /* 
+    | Doubling bonus (dblBonus) for doubling or re-doubling the contract. 
+    | This is a straight up bonus of 50 or 100 and is not subject to the multipliers. 
     */
 
-    if (mult === 4) {
+    if (mult == 4) { // returns string
         return 100;
-    } else if (mult === 2) {
+    } else if (mult == 2) {
         return 50;
     } else {
         return 0;
@@ -235,10 +269,10 @@ function setDoublingBonus(mult) {
 
 }
 
-function setGameTypeBonus(ctt) {
+function setContractBonus(ctt) {
 
     /* 
-    | Game type bonus (gtb) points for making 'GAME' or 'PART-SCORE' 
+    | Game type bonus (contractBonus) points for making 'GAME' or 'PART-SCORE' 
     |
     | For making PART-SCORE:   	        50
     | For making GAME, not vulnerable: 	300
@@ -246,21 +280,23 @@ function setGameTypeBonus(ctt) {
     |
     */
 
-    if (ctt === "Game") {
+    if (ctt === "GAME") {
         if (vul) {
             return 500; // bonus + 200 for vulnarable
         } else {
             return 300;
         }
-    } else {
+    } else if (ctt === "PART-SCORE") {
         return 50;
+    } else {
+        return 0;
     }
 }
 
 function setSlamBonus(bid) {
 
     /* 
-    | Slam bonus (sb) for bidding and taking 12 or 13 tricks 
+    | Slam bonus (slamBonus) for bidding and taking 12 or 13 tricks 
     |
     | Small slam (12 tricks) bid and made   - not vulnerable 500
     |                                           - vulnerable 750
@@ -294,15 +330,13 @@ function setSlamBonus(bid) {
 
 function setSubTotal() {
 
-    if (ttp === 0 || suit === undefined) {
+    if (totalTrickPoints === 0 || suit === undefined) {
         subTotal = 0;
     } else {
-        subTotal = gtb + dblb + ttp + sb;
+        subTotal = contractBonus + dblBonus + totalTrickPoints + slamBonus;
     }
 
 }
-
-
 
 /* ============================================================================
 |
@@ -310,21 +344,46 @@ function setSubTotal() {
 |
 ============================================================================ */
 
-function setExtraTricks(made, bid) {
+function setOverUnderTricks(made, bid) {
+
     /* When positive the game is won and '+Extra tricks' are awarded bonus points, 
     where negative them game is lost and '-Extra tricks' are subject to penalties */
-    return bid - made;
+
+    if (made !== undefined && bid > 0) { // don't fire until bot tricks and made selected
+        return made - bid;
+    }
 }
 
-function setBasePenalty(vul) {
-    /* Work out the base penalties for first 'V' = 50 'NV' = 100 x the multiplier
-    Will return positive value which will work for bot over and under tricks */
-    return (vul) ? 100 * mult : 50 * mult;
+function setOverUnderBase(overUnder, vul, mult, made, suit, ppt) {
+
+    /*
+    | Work out the base penalty/bonus score base on the first trick and doubling status
+    |   - Extra tricks with standard contract 'V' or 'NV' = standard trick points
+    |   - Extra trick points doubled or redoubled 'V' = 50 'NV' = 100 x the multiplier
+    |   - Losts game penalties 'V' = 50 'NV' = 100 x the multiplier
+    |
+    | Positive values are aways returned!
+     */
+
+    if (bid === 0 || suit === undefined || made === undefined) { // prevent firing until valid fields selected
+        return 0;
+    } else {
+        if (overUnder >= 0 && mult === 1) { // standard game gets trick value
+            return ppt;
+        } else { // only fire when neg tricks or doubled contract
+            return (vul) ? 100 * mult : 50 * mult;
+        }
+    }
 }
 
-function setPenalty(ot, bpp) {
+function setPenalty(overUnder, bpp) {
 
-    /*         
+    /*  
+        if(under && mult >= 2)
+            = -1
+            = -2 || -3
+            < -4
+
         if single base x undertricks
         if double && - NV {-base - ((ot + 1) * base * 2)}
         if double && -2 or -3 && NV {-base - ((ot + 1) * base * 2)}
@@ -332,46 +391,45 @@ function setPenalty(ot, bpp) {
         if double && V {-base - ((ot + 1) * base * 1.5)}
         if re-double score * 2 both 'V' and 'NV'
     */
+    if (suit !== undefined) { // only fire when suit is selected 
 
-    if (ot === -1 || ot < -1 && mult === 1) { // single 'V' and 'NV'
-        return ot * bpp;
-    } else if (ot === -2 || ot === -3) {
-        if (!vul) {
-            return (ot + 1) * bpp * 2 - bpp;
-        } else {
-            return (ot + 1) * bpp * 1.5 - bpp;
+        if (overUnder === -1 || overUnder < -1 && mult === 1) { // if lost or single multiplier
+            return overUnder * bpp;
+        } else if (overUnder === -2 || overUnder === -3) { // if lost by -2 or -3
+            if (!vul) {
+                return (overUnder + 1) * bpp * 2 - bpp;
+            } else {
+                return (overUnder + 1) * bpp * 1.5 - bpp;
+            }
+        } else if (overUnder <= -4) { // if lost by 4 or more
+            if (!vul) {
+                return (overUnder + 1) * bpp * 3 + bpp; // not sure why this is opposite but it works!
+            } else {
+                return (overUnder + 1) * bpp * 1.5 - bpp;
+            }
+        } else { // if game won
+            return overUnder * bpp;
         }
-    } else if (ot <= -4) {
-        if (!vul) {
-            return (ot + 1) * bpp * 3 + bpp; // not sure why this is opposite but it works!
-        } else {
-            return (ot + 1) * bpp * 1.5 - bpp;
-        }
-    } else if (ot >= 0 && mult === 1) {
-        return ot * ppt;
-    } else {
-        return ot * bpp;
-
     }
 
 }
 
-function gameOver(ot, tpp) {
+function gameOver(overUnder, tpp) {
 
     let t;
 
-    if (ot >= 0) {
+    if (overUnder >= 0) {
         //game won
         t = tpp + subTotal;
-
+        gameStatus = "won";
     } else {
         // game lost
+        gameStatus = "lost";
         t = tpp;
     }
 
     return t;
 }
-
 
 /* ============================================================================
 |
@@ -380,11 +438,17 @@ function gameOver(ot, tpp) {
 ============================================================================ */
 
 function displayGameOver() {
-    if (contractReady && made !== undefined) {
-        document.getElementById('gameOver').innerHTML = "<div>Actual Score: " + grandTotal + "</div>";
-    } else {
-        document.getElementById('gameOver').innerHTML = "<div>Actual Score: 0</div>";
 
+    
+    if (contractReady && made !== undefined) {
+        if (gameStatus === "won") {
+            bg = "";
+            document.getElementById('gameOver').innerHTML = "<div class=' bx ui-corner-all success'><strong>Actual Score:</strong> " + grandTotal + "</div>";
+        } else {
+            document.getElementById('gameOver').innerHTML = "<div class=' bx ui-corner-all danger'><strong>Actual Score:</strong> " + grandTotal + "</div>";
+        }
+    } else {
+        document.getElementById('gameOver').innerHTML = "<div></div>";
     }
 }
 
@@ -396,8 +460,9 @@ function displaySubTotal() {
     */
 
     if (contractReady) {
-        document.getElementById('subTotal').innerHTML = "<div>Contract Score: " + subTotal + "</div>";
+        // document.getElementById('subTotal').innerHTML = "<div>Contract Score: " + subTotal + "</div>";
+        document.getElementById('subTotal').innerHTML = "<div class='bx ui-corner-all'><strong>Contract Score:</strong> " + subTotal + "</div>";
     } else {
-        document.getElementById('subTotal').innerHTML = "<div>Contract Score: 0</div>";
+        document.getElementById('subTotal').innerHTML = "<div></div>";
     }
 }

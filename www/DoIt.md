@@ -1,34 +1,43 @@
+**Optimise**
+Re write a function to check if the multplier is set. Used on setPPT() setNTB()
+
 - Keep track of scores
 
 
-Duplicate Bridge is fun to play, but totaling up the match points and determining the winner at the end can be difficult. 
+|20|20|30|30|
 
-That is where the Duplicate Bridge Scoring App can make your life easier.This is an application designed by duplicate bridge players, for duplicate bridge players.Launch the app, start a new match, enter the match parameters, and begin. 
-You can enter the team names if you want, and you can even print out some board movement sheets that can be placed at each table, to help avoid the confusion of where teams move next for each round. 
-If an AirPrint printer is not available, these sheets can be sent out as an email in PDF format, and can then be printed from a desktop computer.
-Play your game as you would normally, using the "travelers" sheets to keep score of each board. The tournament director can either enter the scores as each board is completed, or can wait until the end. When all the scoring has been entered, the results can be displayed and the winner is determined. The results can also be printed out, or sent out as an email in PDF format.A hand score calculator has also been included.
-
-Duplicate Bridge Scoring
+| Task | Command | Notes |
+| :--- | :------ | :---- |
+|      |         |       |
+|      |         |       |
 
 
-    <!--
-        If you do not want any permissions to be added to your app, add the
-        following tag to your config.xml; you will still have the INTERNET
-        permission on your app, which PhoneGap requires.
-    -->
-    <preference name="permissions"                value="none"/>
+## Points Per Trick (PPT)
 
-    <!-- Customize your app and platform with the preference element. -->
-    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
-    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
-    <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
-    <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
-    <preference name="stay-in-webview"            value="false" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
-    <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
-    <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
-    <preference name="exit-on-suspend"            value="false" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
-    <preference name="show-splash-screen-spinner" value="true" />           <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
-    <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
-    <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
-    <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+|                    | PPT  | Doubled | Redoubled |
+| :----------------- | :--- | :------ | :-------- |
+| Clubs and Diamonds | 20   | 40      | 80        |
+| Hearts and Clubs   | 30   | 60      | 120       |
+| No Trumps **       | 30   | 60      | 120       |
+
+** No Trumps are awarded 10 points extra for the first trick subject double and redouble
+
+
+## Bonuses
+
+### Contract Bonus
+
+
+
+If the trick score exceeds 100 (including multipliers) then the contract type is 'GAME' awarding 300 bonus points (or 500 points if vulnerable), if the contract is less than 100 points 'PART-SCORE' is achieved awarding 50 bonus points.
+
+An extra 50 points is awarded for any doubled contract or 100 points for a redoubled contract. This is on top of the game bonus.
+    
+### Slam Bonus
+
+Slam bonus (sb) for bidding and taking 12 or 13 tricks 
+Small slam (12 tricks) bid and made   - not vulnerable 500
+                                       - vulnerable 750
+Grand slam (13 tricks) bid and made   - not vulnerable 1000
+                                      - vulnerable 1500
+** Slam bonuses are on top of all other bonuses **

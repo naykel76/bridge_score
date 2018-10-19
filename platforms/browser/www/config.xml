@@ -6,12 +6,12 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>bridge_score</name>
+    <name>Bridge Score</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Simple and easy to use application allows you to score any individual game of duplicate bridge quickly. Select your contract details with the simple, intuitive interface to calculate your expected score, then enter tricks made to work out over/under tricks and provide your final round score, or penalty.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="hello@nathanwatts.xyz" href="https://nathanwatts.xyz">
+        Nathan Watts
     </author>
     <content src="index.html" />
     <access origin="*" />
