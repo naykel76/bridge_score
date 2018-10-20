@@ -29,15 +29,23 @@ var dblBonus; // doubling bonus
 ============================================================================ */
 
 function getBid() {
+    let x;
     if (!$('input[name="bid"]').is(':checked')) {
-        return 0;
+        x = 0;
     } else {
-        return parseInt($('input[name="bid"]:checked').val());
+        x = parseInt($('input[name="bid"]:checked').val());
     }
+
+    if (x > 0) {
+        document.getElementById('score-bid').innerHTML = x - 6;
+    }
+    return x;
 }
 
 function getSuit() {
-    return $('input[name="suit"]:checked').val();
+    let x = $('input[name="suit"]:checked').val()
+    document.getElementById('score-suit').innerHTML = x;
+    return x;
 }
 
 function getMultiplier() {
@@ -56,11 +64,18 @@ function getVul() {
 }
 
 function getMade() {
+    let x = undefined;
+
     if (!$('input[name="made"]').is(':checked')) {
-        return undefined; // used for easy identification
+        x = undefined; // used for easy identification
     } else {
-        return parseInt($('input[name="made"]:checked').val());
+        x = parseInt($('input[name="made"]:checked').val());
     }
+
+    document.getElementById('score-made').innerHTML = x;
+    // document.getElementById('score-ppt').innerHTML = "dfgdfg";
+
+    return x;
 }
 
 /* Check to see if all fields have been selected */
@@ -180,18 +195,23 @@ function setPPT(suit) {
 
     // if the multiplier is not set temporarly set to 1, so 'points per trick' can be displayed if selected first 
     let m = mult;
+    let p;
 
     if (m === undefined) {
         m = 1;
     }
 
     if (suit === 'diamonds' || suit === 'clubs') {
-        return 20 * m;
+        p = 20 * m;
     } else if (suit === 'nt' || suit === 'hearts' || suit === 'spades') {
-        return 30 * m;
+        p = 30 * m;
     } else {
-        return 0;
+        p = 0;
     }
+
+    document.getElementById('score-ppt').innerHTML = p;
+
+    return p;
 }
 
 function setNTB(suit) {
@@ -202,16 +222,21 @@ function setNTB(suit) {
 
     // if the multiplier is not set temporarly set to 1, so 'points per trick' can be displayed if selected first 
     let m = mult;
+    let x;
 
     if (m === undefined) {
         m = 1;
     }
 
     if (suit === 'nt') {
-        return 10 * m;
+        x = 10 * m;
     } else {
-        return 0;
+        x = 0;
     }
+
+    document.getElementById('score-ntb').innerHTML = x;
+
+    return x;
 }
 
 function setTotalTrickPoints(ppt, bid, ntb) {
@@ -219,12 +244,17 @@ function setTotalTrickPoints(ppt, bid, ntb) {
     /* 
     | Total score for tricks including multipliers and NTB (if bid), no bonuses!
     */
+    let x;
 
     if (bid === 0 || ppt === 0) { // prevent contract type displaying early
-        return 0;
+        x = 0;
     } else {
-        return ppt * (bid - 6) + ntb; // the -6 is due to no points awarded for the first 6 tricks
+        x = ppt * (bid - 6) + ntb; // the -6 is due to no points awarded for the first 6 tricks
     }
+
+    document.getElementById('score-ttp').innerHTML = x;
+
+    return x;
 
 }
 
@@ -240,16 +270,20 @@ function setContractType(totalTrickPoints) {
     |
     */
     let t = totalTrickPoints;
+    let x;
 
     if (t === undefined) {
-        return undefined;
+        x = undefined;
     }
     if (t <= 99) {
-        return "PART-SCORE";
+        x = "PART-SCORE";
     } else {
-        return "GAME";
+        x = "GAME";
     }
 
+    document.getElementById('score-ct').innerHTML = x;
+
+    return x;
 }
 
 function setContractDblBonus(mult) {
@@ -259,14 +293,18 @@ function setContractDblBonus(mult) {
     | This is a straight up bonus of 50 or 100 and is not subject to the multipliers. 
     */
 
-    if (mult == 4) { // returns string
-        return 100;
-    } else if (mult == 2) {
-        return 50;
-    } else {
-        return 0;
-    }
+    let x;
 
+    if (mult == 4) { // returns string
+        x = 100;
+    } else if (mult == 2) {
+        x = 50;
+    } else {
+        x = 0;
+    }
+    document.getElementById('score-dblb').innerHTML = x;
+
+    return x;
 }
 
 function setContractBonus(ctt) {
@@ -280,17 +318,21 @@ function setContractBonus(ctt) {
     |
     */
 
+    let x;
     if (ctt === "GAME") {
         if (vul) {
-            return 500; // bonus + 200 for vulnarable
+            x = 500; // bonus + 200 for vulnarable
         } else {
-            return 300;
+            x = 300;
         }
     } else if (ctt === "PART-SCORE") {
-        return 50;
+        x = 50;
     } else {
-        return 0;
+        x = 0;
     }
+
+    document.getElementById('score-ctb').innerHTML = x;
+    return x;
 }
 
 function setSlamBonus(bid) {
@@ -320,6 +362,7 @@ function setSlamBonus(bid) {
         x = x + x * 0.5; // +50% for vulnarable
     }
 
+    document.getElementById('score-sb').innerHTML = x;
     return x;
 }
 
@@ -336,6 +379,8 @@ function setSubTotal() {
         subTotal = contractBonus + dblBonus + totalTrickPoints + slamBonus;
     }
 
+    document.getElementById('score-cts').innerHTML = subTotal;
+
 }
 
 /* ============================================================================
@@ -348,10 +393,13 @@ function setOverUnderTricks(made, bid) {
 
     /* When positive the game is won and '+Extra tricks' are awarded bonus points, 
     where negative them game is lost and '-Extra tricks' are subject to penalties */
-
+    let x;
     if (made !== undefined && bid > 0) { // don't fire until bot tricks and made selected
-        return made - bid;
+        x = made - bid;
     }
+
+    document.getElementById('score-out').innerHTML = x;
+    return x;
 }
 
 function setOverUnderBase(overUnder, vul, mult, made, suit, ppt) {
@@ -428,6 +476,7 @@ function gameOver(overUnder, tpp) {
         t = tpp;
     }
 
+    document.getElementById('score-gt').innerHTML = t;
     return t;
 }
 
@@ -439,7 +488,6 @@ function gameOver(overUnder, tpp) {
 
 function displayGameOver() {
 
-    
     if (contractReady && made !== undefined) {
         if (gameStatus === "won") {
             bg = "";
@@ -447,6 +495,16 @@ function displayGameOver() {
         } else {
             document.getElementById('gameOver').innerHTML = "<div class=' bx ui-corner-all danger'><strong>Actual Score:</strong> " + grandTotal + "</div>";
         }
+
+
+
+        // document.getElementById('').innerHTML
+        // document.getElementById('').innerHTML
+        // document.getElementById('').innerHTML
+        // document.getElementById('').innerHTML
+
+
+
     } else {
         document.getElementById('gameOver').innerHTML = "<div></div>";
     }

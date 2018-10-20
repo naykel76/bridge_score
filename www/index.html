@@ -23,6 +23,21 @@
 </head>
 
 <body onload="setContractDetails();">
+
+  <div data-role="header" data-display="fixed">
+    <h1>Bridge Score</h1>
+    <a href="#right-panel"><span class="icon-menu"></span></a>
+  </div><!-- /header -->
+  <div data-role="panel" id="right-panel" data-display="overlay" data-position="right">
+    <ul data-role="listview" data-icon="false">
+      <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
+      <!-- <li data-role="list-divider">Share this page</li> -->
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+      <li><a href="#">Item</a></li>
+    </ul>
+  </div><!-- /panel -->
+
   <div class="wrapper">
 
     <div class="container">
@@ -80,7 +95,7 @@
       <div id="subTotal"></div>
     </div>
 
-<br>
+    <br>
 
     <div class="container">
 
@@ -120,8 +135,44 @@
         <label for="made-13">13</label>
       </div>
 
-      <div id="gameOver"></div>
+
+
+
+      <!-- <a href="#help" data-position-to="window" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Help</a>
+      <div data-role="popup" id="help" class="ui-content" style="max-width:280px">
+        <div class="bx">
+          <p>Select all fields for scores</p>
+        </div>
+            <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+        <p>I have a close button at the top right corner with simple HTML markup.</p> -->
     </div>
+
+    <div id="gameOver"></div>
+  </div>
+
+  <div id="gameSummary">
+    <h3>Game Summary</h3>
+    <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
+    <p><strong>Suit: </strong><span id="score-suit"></span></p>
+    <p><strong>Points per trick:</strong> <span id="score-ppt"></span></p>
+    <p><strong>NT Bonus:</strong> <span id="score-ntb"></span></p>
+    <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
+    <h3>Scoring Breakdown</h3>
+    <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
+    <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
+
+    <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
+    <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
+    <hr>
+    <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
+    <h3>Final Results</h3>
+    <p><strong>Tricks Made</strong><span id="score-made"></span></p>
+    <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
+    <hr>
+    <p><strong>Final Score: </strong><span id="score-gt"></span></p>
+  </div>
+
+
   </div><!-- wrapper -->
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
