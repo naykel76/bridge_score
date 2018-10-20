@@ -12,7 +12,7 @@
 
   <link rel="icon" href="favicon.ico">
 
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <title>Bridge Score</title>
 
@@ -24,78 +24,76 @@
 
 <body onload="setContractDetails();">
 
-  <div data-role="header" data-display="fixed">
+  <div data-role="header" data-position="fixed">
     <h1>Bridge Score</h1>
     <a href="#right-panel"><span class="icon-menu"></span></a>
   </div><!-- /header -->
   <div data-role="panel" id="right-panel" data-display="overlay" data-position="right">
     <ul data-role="listview" data-icon="false">
       <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
-      <!-- <li data-role="list-divider">Share this page</li> -->
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
+      <li><a href="#">Coming Soon</a></li>
+      <li><a href="#">Coming Soon</a></li>
+      <li><a href="#">Coming Soon</a></li>
     </ul>
   </div><!-- /panel -->
 
   <div class="wrapper">
+    <button onclick="reset();">RESET</button>
 
     <div class="container">
       <div class="title">Contract Details</div>
       <!-- bid -->
       <div id="contractBid" data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-1" value="7">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-1" value="7">
         <label for="bid-1">1</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-2" value="8">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-2" value="8">
         <label for="bid-2">2</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-3" value="9">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-3" value="9">
         <label for="bid-3">3</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-4" value="10">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-4" value="10">
         <label for="bid-4">4</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-5" value="11">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-5" value="11">
         <label for="bid-5">5</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-6" value="12">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-6" value="12">
         <label for="bid-6">6</label>
-        <input type="radio" onclick="setContractDetails();" name="bid" id="bid-7" value="13">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-7" value="13">
         <label for="bid-7">7</label>
       </div>
 
       <!-- select suit -->
       <div id="contractSuit" data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="suit" id="suit-nt" value="nt">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-nt" value="NT">
         <label for="suit-nt"><span class="icon-nt"></span></label>
-        <input type="radio" onclick="setContractDetails();" name="suit" id="suit-spades" value="spades">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-spades" value="Spades">
         <label for="suit-spades"><span class="icon-spades"></span></label>
-        <input type="radio" onclick="setContractDetails();" name="suit" id="suit-hearts" value="hearts">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-hearts" value="Hearts">
         <label for="suit-hearts"><span class="icon-hearts r"></span></label>
-        <input type="radio" onclick="setContractDetails();" name="suit" id="suit-clubs" value="clubs">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-clubs" value="Clubs">
         <label for="suit-clubs"><span class="icon-clubs"></span></label>
-        <input type="radio" onclick="setContractDetails();" name="suit" id="suit-diamonds" value="diamonds">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-diamonds" value="Diamonds">
         <label for="suit-diamonds"><span class="icon-diamonds r"></span></label>
       </div>
 
       <!-- vulnerable -->
       <div id="contractVul" data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="vul" id="vul-nv" value="NV" checked>
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="vul" id="vul-nv" value="NV">
         <label for="vul-nv">Not Vulnerable</label>
-        <input type="radio" onclick="setContractDetails();" name="vul" id="vul-v" value="V">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="vul" id="vul-v" value="V">
         <label for="vul-v">Vulnerable</label>
       </div>
 
       <!-- Multiplier -->
       <div id="contractMult" data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="mult" id="mult-1" value="1" checked>
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="mult" id="mult-1" value="1">
         <label for="mult-1">Standard</label>
-        <input type="radio" onclick="setContractDetails();" name="mult" id="mult-2" value="2">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="mult" id="mult-2" value="2">
         <label for="mult-2">Doubled</label>
-        <input type="radio" onclick="setContractDetails();" name="mult" id="mult-4" value="4">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="mult" id="mult-4" value="4">
         <label for="mult-4">Re-doubled</label>
       </div>
 
       <div id="subTotal"></div>
     </div>
-
-    <br>
 
     <div class="container">
 
@@ -103,80 +101,82 @@
 
       <!-- tricks taken -->
       <div data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-0" value="0">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-0" value="0">
         <label for="made-0">0</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-1" value="1">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-1" value="1">
         <label for="made-1">1</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-2" value="2">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-2" value="2">
         <label for="made-2">2</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-3" value="3">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-3" value="3">
         <label for="made-3">3</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-4" value="4">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-4" value="4">
         <label for="made-4">4</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-5" value="5">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-5" value="5">
         <label for="made-5">5</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-6" value="6">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-6" value="6">
         <label for="made-6">6</label>
       </div>
       <div data-role="controlgroup" data-type="horizontal" class="nbw">
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-7" value="7">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-7" value="7">
         <label for="made-7">7</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-8" value="8">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-8" value="8">
         <label for="made-8">8</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-9" value="9">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-9" value="9">
         <label for="made-9">9</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-10" value="10">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-10" value="10">
         <label for="made-10">10</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="madee-11" value="11">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="madee-11" value="11">
         <label for="madee-11">11</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-12" value="12">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-12" value="12">
         <label for="made-12">12</label>
-        <input type="radio" onclick="setContractDetails();" name="made" id="made-13" value="13">
+        <input type="radio" onclick="refreshDetails(); setContractDetails();" name="made" id="made-13" value="13">
         <label for="made-13">13</label>
       </div>
+      <div id="gameOver"></div>
+    </div>
+
+    <div id="gameSummary" class="container">
+      <div class="title">Game Summary</div>
+      <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
+      <p><strong>Suit: </strong><span id="score-suit"></span></p>
+      <p><strong>Points per trick:</strong><span id="score-ppt"></span></p>
+      <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
+      <p><strong>Multiplier: </strong><span id="score-mult"></span></p>
+      <p><strong>Vulnerable: </strong><span id="score-vul"></span></p>
+      <br>
+      <div class="title">Scoring Breakdown</div>
+      <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
+      <p><strong>NT (1st Trick Bonus): </strong><span id="score-ntb"></span></p>
+      <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
+      <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
+      <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
+      <hr>
+      <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
+      <br>
+      <div class="title">Final Results</div>
+      <p><strong>Tricks Made: </strong><span id="score-made"></span></p>
+      <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
+      <hr>
+      <p><strong>Final Score: </strong><span id="score-gt"></span></p>
+    </div>
+
+  </div><!-- gameSummary -->
+  </div><!-- wrapper -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript">
+    app.initialize();
+  </script>
+</body>
+
+</html>
 
 
 
-
-      <!-- <a href="#help" data-position-to="window" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Help</a>
+<!-- <a href="#help" data-position-to="window" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Help</a>
       <div data-role="popup" id="help" class="ui-content" style="max-width:280px">
         <div class="bx">
           <p>Select all fields for scores</p>
         </div>
             <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
         <p>I have a close button at the top right corner with simple HTML markup.</p> -->
-    </div>
-
-    <div id="gameOver"></div>
-  </div>
-
-  <div id="gameSummary">
-    <h3>Game Summary</h3>
-    <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
-    <p><strong>Suit: </strong><span id="score-suit"></span></p>
-    <p><strong>Points per trick:</strong> <span id="score-ppt"></span></p>
-    <p><strong>NT Bonus:</strong> <span id="score-ntb"></span></p>
-    <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
-    <h3>Scoring Breakdown</h3>
-    <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
-    <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
-
-    <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
-    <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
-    <hr>
-    <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
-    <h3>Final Results</h3>
-    <p><strong>Tricks Made</strong><span id="score-made"></span></p>
-    <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
-    <hr>
-    <p><strong>Final Score: </strong><span id="score-gt"></span></p>
-  </div>
-
-
-  </div><!-- wrapper -->
-  <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript">app.initialize();</script>
-</body>
-
-</html>
