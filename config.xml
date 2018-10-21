@@ -16,7 +16,7 @@
 
     <platform name="android">
         <allow-intent href="market:*" />
-        <!-- <preference name="android-minSdkVersion" value="14" /> -->
+        <preference name="android-minSdkVersion" value="26" />
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
