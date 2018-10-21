@@ -60,6 +60,7 @@
         <label for="bid-7">7</label>
       </div>
 
+
       <!-- select suit -->
       <div id="contractSuit" data-role="controlgroup" data-type="horizontal" class="nbw">
         <input type="radio" onclick="refreshDetails(); setContractDetails();" name="suit" id="suit-nt" value="NT">
@@ -135,29 +136,34 @@
       <div id="gameOver"></div>
     </div>
 
-    <div id="gameSummary" class="container">
-      <div class="title">Game Summary</div>
-      <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
-      <p><strong>Suit: </strong><span id="score-suit"></span></p>
-      <p><strong>Points per trick:</strong><span id="score-ppt"></span></p>
-      <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
-      <p><strong>Multiplier: </strong><span id="score-mult"></span></p>
-      <p><strong>Vulnerable: </strong><span id="score-vul"></span></p>
-      <br>
-      <div class="title">Scoring Breakdown</div>
-      <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
-      <p><strong>NT (1st Trick Bonus): </strong><span id="score-ntb"></span></p>
-      <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
-      <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
-      <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
-      <hr>
-      <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
-      <br>
-      <div class="title">Final Results</div>
-      <p><strong>Tricks Made: </strong><span id="score-made"></span></p>
-      <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
-      <hr>
-      <p><strong>Final Score: </strong><span id="score-gt"></span></p>
+    <div id="gameSummary">
+      <div class="container">
+        <div class="title">Game Summary</div>
+        <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
+        <p><strong>Suit: </strong><span id="score-suit"></span></p>
+        <p><strong>Points per trick:</strong><span id="score-ppt"></span></p>
+        <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
+        <p><strong>Multiplier: </strong><span id="score-mult"></span></p>
+        <p><strong>Vulnerable: </strong><span id="score-vul"></span></p>
+      </div>
+      <div class="container">
+        <div class="title">Scoring Breakdown</div>
+        <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
+        <p><strong>NT (1st Trick Bonus): </strong><span id="score-ntb"></span></p>
+        <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
+        <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
+        <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
+        <hr>
+        <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
+      </div>
+      <div class="container">
+        <div class="title">Final Results</div>
+        <p><strong>Tricks Made: </strong><span id="score-made"></span></p>
+        <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
+        <hr>
+        <p><strong>Final Score: </strong><span id="score-gt"></span></p>
+      </div>
+
     </div>
 
   </div><!-- gameSummary -->
