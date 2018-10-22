@@ -98,7 +98,7 @@ function getMade() {
 
 /* reset all fields */
 function reset() {
-    location.reload();
+    window.location.reload(true);
 }
 
 /* Check to see if all fields have been selected */
@@ -146,7 +146,7 @@ function setContractDetails() {
     displaySubTotal();
     displayGameOver();
 
-    debug();
+    // debug();
 }
 
 /* display information in console */
@@ -522,7 +522,7 @@ function displayGameOver() {
             document.getElementById('gameOver').innerHTML = "<div class=' bx ui-corner-all danger'><strong>Actual Score:</strong> " + grandTotal + "</div>";
         }
     } else {
-        document.getElementById('gameOver').innerHTML = "<div></div>";
+        document.getElementById('gameOver').innerHTML = "<div class='bx ui-corner-all'>Actual Score:</div>";
     }
 }
 
@@ -537,6 +537,6 @@ function displaySubTotal() {
         // document.getElementById('subTotal').innerHTML = "<div>Contract Score: " + subTotal + "</div>";
         document.getElementById('subTotal').innerHTML = "<div class='bx ui-corner-all'><strong>Contract Score:</strong> " + subTotal + "</div>";
     } else {
-        document.getElementById('subTotal').innerHTML = "<div></div>";
+        document.getElementById('subTotal').innerHTML = "<div class='bx ui-corner-all'>Contract Score: </div>";
     }
 }

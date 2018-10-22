@@ -20,28 +20,34 @@
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
   <script src="js/main.js"></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 
 <body onload="setContractDetails();">
 
+  <!-- <div data-role="header" data-position="fixed" role="banner" class="ui-header ui-bar-inherit ui-header-fixed slidedown">
+    <a href="../toolbar/" data-rel="back" class="ui-btn-left ui-alt-icon ui-nodisc-icon ui-btn ui-icon-carat-l  ui-corner-all" data-role="button" role="button">Back</a>
+        <h1 class="ui-title" role="heading" aria-level="1">Fixed header</h1>
+    </div> -->
+
+
   <div data-role="header" data-position="fixed">
-    <h1>Bridge Score</h1>
-    <a href="#right-panel"><span class="icon-menu"></span></a>
+    <h1 class="ui-title">Bridge Score</h1>
+    <a href="#right-panel" class="btn-trans ui-btn ui-icon-bars ui-btn-icon-notext"><span class="icon-menu"></span></a>
   </div><!-- /header -->
+
   <div data-role="panel" id="right-panel" data-display="overlay" data-position="right">
     <ul data-role="listview" data-icon="false">
       <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
-      <li><a href="#">Coming Soon</a></li>
-      <li><a href="#">Coming Soon</a></li>
       <li><a href="#">Coming Soon</a></li>
     </ul>
   </div><!-- /panel -->
 
   <div class="wrapper">
-    <button onclick="reset();">RESET</button>
 
     <div class="container">
-      <div class="title">Contract Details</div>
+      <div class="title">Enter Bid</div>
       <!-- bid -->
       <div id="contractBid" data-role="controlgroup" data-type="horizontal" class="nbw">
         <input type="radio" onclick="refreshDetails(); setContractDetails();" name="bid" id="bid-1" value="7">
@@ -94,7 +100,7 @@
       </div>
 
       <div id="subTotal"></div>
-    </div>
+    </div> <!-- bid details -->
 
     <div class="container">
 
@@ -136,38 +142,48 @@
       <div id="gameOver"></div>
     </div>
 
-    <div id="gameSummary">
-      <div class="container">
-        <div class="title">Game Summary</div>
-        <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
-        <p><strong>Suit: </strong><span id="score-suit"></span></p>
-        <p><strong>Points per trick:</strong><span id="score-ppt"></span></p>
-        <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
-        <p><strong>Multiplier: </strong><span id="score-mult"></span></p>
-        <p><strong>Vulnerable: </strong><span id="score-vul"></span></p>
-      </div>
-      <div class="container">
-        <div class="title">Scoring Breakdown</div>
-        <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
-        <p><strong>NT (1st Trick Bonus): </strong><span id="score-ntb"></span></p>
-        <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
-        <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
-        <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
-        <hr>
-        <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
-      </div>
-      <div class="container">
-        <div class="title">Final Results</div>
-        <p><strong>Tricks Made: </strong><span id="score-made"></span></p>
-        <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
-        <hr>
-        <p><strong>Final Score: </strong><span id="score-gt"></span></p>
-      </div>
-
-    </div>
-
-  </div><!-- gameSummary -->
+    <div data-role="popup" id="help" class="ui-content">
+      <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      <div id="gameSummary">
+        <div class="container">
+          <div class="title">Game Summary</div>
+          <p><strong>Tricks Bid: </strong><span id="score-bid"></span></p>
+          <p><strong>Suit: </strong><span id="score-suit"></span></p>
+          <p><strong>Points per trick:</strong><span id="score-ppt"></span></p>
+          <p><strong>Contract Type: </strong><span id="score-ct"></span></p>
+          <p><strong>Multiplier: </strong><span id="score-mult"></span></p>
+          <p><strong>Vulnerable: </strong><span id="score-vul"></span></p>
+        </div>
+        <div class="container">
+          <div class="title">Scoring Breakdown</div>
+          <p><strong>Total Trick Points: </strong><span id="score-ttp"></span></p>
+          <p><strong>NT (1st Trick Bonus): </strong><span id="score-ntb"></span></p>
+          <p><strong>Contract Bonus: </strong><span id="score-ctb"></span></p>
+          <p><strong>Slam Bonus: </strong><span id="score-sb"></span></p>
+          <p><strong>Doubled Bonus: </strong><span id="score-dblb"></span></p>
+          <hr>
+          <p><strong>Contract Score: </strong><span id="score-cts"></span></p>
+        </div>
+        <div class="container">
+          <div class="title">Final Results</div>
+          <p><strong>Tricks Made: </strong><span id="score-made"></span></p>
+          <p><strong>Over/Under Tricks: </strong><span id="score-out"></span></p>
+          <hr>
+          <p><strong>Final Score: </strong><span id="score-gt"></span></p>
+        </div>
+      </div><!-- gameSummary -->
+    </div><!-- popup -->
   </div><!-- wrapper -->
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#help" data-icon="info" data-position-to=" window" data-rel="popup" class="ui-btn">Summary</a></li>
+        <li><a onclick="reset();" data-icon="refresh" data-position-to=" window" data-rel="popup" class="ui-btn">Reset</a></li>
+      </ul>
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
+
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript">
@@ -176,13 +192,3 @@
 </body>
 
 </html>
-
-
-
-<!-- <a href="#help" data-position-to="window" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Help</a>
-      <div data-role="popup" id="help" class="ui-content" style="max-width:280px">
-        <div class="bx">
-          <p>Select all fields for scores</p>
-        </div>
-            <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-        <p>I have a close button at the top right corner with simple HTML markup.</p> -->

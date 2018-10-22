@@ -32,32 +32,58 @@
   margin-top: 1px;
 }
 
-.icon-menu:before {
+.icon-loop:before {
   content: "\e900";
 }
-
-.icon-nt:before {
+.icon-refresh:before {
+  content: "\e900";
+}
+.icon-reload1:before {
+  content: "\e900";
+}
+.icon-reset:before {
+  content: "\e900";
+}
+.icon-arrows:before {
+  content: "\e900";
+}
+.icon-reload:before {
   content: "\e901";
 }
-
-.icon-clubs:before {
+.icon-home:before {
   content: "\e902";
 }
-
-.icon-diamonds:before {
+.icon-cheveron-up:before {
+  content: "\e903";
+}
+.icon-menu:before {
   content: "\e904";
+}
+.icon-nt:before {
+  content: "\e907";
+}
+.icon-clubs:before {
+  content: "\e908";
+}
+.icon-diamonds:before {
+  content: "\e909";
   color: #af0f31;
 }
-
 .icon-hearts:before {
-  content: "\e905";
+  content: "\e90a";
   color: #af0f31;
 }
-
 .icon-spades:before {
+  content: "\e90b";
+}
+.icon-cheveron-outline-up:before {
+  content: "\e905";
+}
+.icon-refresh1:before {
   content: "\e906";
 }
 
+/* color: #af0f31; */
 
 
 /* ============================================================================
@@ -65,16 +91,20 @@
 |  ===========================================================================*/
 /* ui-header ui-bar-inherit */
 
+/* 
+light green #8cc63f 
+orange #e88717
+*/
 
 /* container for content */
 .wrapper {
   max-width: 500px;
-  /* restrict width to keep aesthetically pleasing*/
+  /* restrict width to keep aesthetically pleasing on larger screens*/
   margin-right: auto;
   margin-left: auto;
   border-radius: 10px;
   position: relative;
-  padding: 5px;
+  padding: 8px;
 }
 
 .container {
@@ -101,40 +131,6 @@ hr {
 
 }
 
-.txt-green {}
-
-.txt-red {
-  color: #FF0000;
-}
-
-.success {
-  color: #fff;
-  background-color: #8cc63f;
-}
-
-.danger {
-  color: #fff;
-  background-color: #BD3D3A;
-  /* color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb; */
-}
-
-
-@media (min-width: 800px) {
-  .wrapper {
-    max-width: 400px;
-    /* border: 15px solid; */
-    /* margin-top: 20px; */
-    /* max-height: 200px;  */
-  }
-
-
-
-}
-.ui-page {
-  background: rgb(240,240,240);
-}
 
 /* overide pop up position*/
 .ui-popup-container.ui-popup-active {
@@ -151,14 +147,14 @@ hr {
   max-width: 100% !important;
 }
 
+/* ============================================================================
+|   Information boxes
+|  ===========================================================================*/
 
 #gameSummary p {
   margin-top: 5px;
   margin-bottom: 5px;
   padding-left: 20px;
-
-  /* margin: 0; */
-  /* font-size: 8px; */
 }
 
 #gameSummary h3 {
@@ -175,6 +171,39 @@ hr {
 
 
 /* ============================================================================
+|   Utility Classes
+|  ===========================================================================*/
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.txt-green {}
+
+.txt-red {
+  color: #FF0000;
+}
+
+.success {
+  color: #fff;
+  background-color: #8cc63f;
+}
+
+.danger {
+  color: #fff;
+  background-color: #BD3D3A;
+}
+
+.ui-btn.danger{
+  background-color: #dc3545;
+  border-color: #BD3D3A;
+  color: #fff;
+}
+
+/* ============================================================================
 |   jQuery Overides 
 |  ===========================================================================*/
 
@@ -182,10 +211,12 @@ hr {
 
 /* inner container for 'ui-control-group' */
 
+.flexCon,
 .nbw .ui-controlgroup-controls {
   display: flex;
 }
 
+.flx-item,
 .nbw .ui-controlgroup-controls .ui-radio {
   /* flex-grow: 1 !important; */
   flex-basis: 100%;
@@ -201,12 +232,7 @@ hr {
   padding: 7px 0;
 }
 
-.title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-left: 5px;
-  margin-top: 5px;
-}
+
 
 
 
@@ -214,3 +240,21 @@ hr {
 .remove-rounded {
   border-radius: 0;
 }
+
+.ui-footer{
+  background: rgba(10,10,10,0.9) !important;
+}
+
+.ui-btn.btn-trans{
+  background: none !important;
+}
+
+
+/* 
+
+padding: 0;
+    width: 1.75em;
+    height: 1.75em;
+    text-indent: -9999px;
+    white-space: nowrap !important;
+*/

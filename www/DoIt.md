@@ -1,3 +1,59 @@
+
+
+Future releases
+- [] reset game icon
+- [] score sheet
+- [] swipe down refresh/reset
+- [] Game summary for points 3 Hearts Doubled (making 5) = x
+- [] splash screens and graphics
+
+
+PLEASE NOTE: Vulnerable scores are disabled in this FREE version. Please upgrade to the full version for a complete app.
+
+#40703D //dark green
+=================================
+
+This application allows for scoring points in traditional rubber bridge ("above the line" and "below the line"). Just create a new game and add deals, providing a declarer, a contract, its result, and additional bonuses. The interface is very simple and intuitive, and there is also a help available. The application displays a score sheet in a form of a table. You can also switch to a list view of all deals.
+
+Feel free to rate, report bugs in the application and the translations, leave your opinions in comments and contact me directly. If you like this application, rate it on this site. If you would like to help me and translate Bridge Score to other language, write me.
+
+=================================
+
+The Bridge Score Calculator displays any duplicate score possible. Simply Swipe and Tap your way to the contract and result desired!
+
+The Bridge Score Calculator is easy to understand as design effort is made to make it look familiar to Bridge players all over the World. 
+
+
+Instructions:
+
+Set Non Vulnerable/Vulerable by tapping the faded out button under the displayed score.
+
+Set contract by swiping the contract level and/or the suit. (Up/Down or Left/Right)
+
+Set XX, X, PASS by tapping the preferred faded out button not currently selected.
+
+Set Tricks Taken by swiping the bottom area Up/Down or Left/Right.
+
+Score for selected criteria is immediately displayed.
+
+=================================
+
+
+
+
+
+With BridgeScore you can easily keep track of bridgegames played at home. 
+BridgeScore will automatically assign a score based on the scoring of Bridge and the datumscore.
+The datumscore is the median of raw scores on a deal.
+Less than 20 points in hands of the declaring side will be awarded with bonus points.
+
+
+
+
+
+
+
+
 **Optimise**
 Re write a function to check if the multplier is set. Used on setPPT() setNTB()
 
