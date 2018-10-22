@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="xyz.nathanwatts.bridge_score" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="xyz.nathanwatts.bridge_score" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Bridge Score</name>
     <description>
         Simple and easy to use application allows you to score any individual game of duplicate bridge quickly. Select your contract details with the simple, intuitive interface to calculate your expected score, then enter tricks made to work out over/under tricks and provide your final round score, or penalty.
